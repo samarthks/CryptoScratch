@@ -2,9 +2,12 @@
   "name": "cryptocurrency",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {"test": "jest --watchAll"},
+  "scripts": {
+    "test": "jest --watchAll"
+  },
   "license": "MIT",
   "dependencies": {
+    "hex-to-binary": "^1.0.1",
     "jest": "^26.6.3"
   }
 }
