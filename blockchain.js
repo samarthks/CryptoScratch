@@ -27,6 +27,7 @@ class Blockchain {
         return false;
       }
       if (Math.abs(lastDifficulty - difficulty) > 1) return false;
+      
       const validatedHash = cryptoHash(
         timestamp,
         lastHash,
