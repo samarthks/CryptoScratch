@@ -1,10 +1,5 @@
 const dotenv = require("dotenv").config();
-const PubNub = require("pubnub");
-const credentials = {
-  publishKey: process.env.PUBLISH_KEY,
-  subscribeKey: process.env.SUBSCRIBE_KEY,
-  secretKey: process.env.SECRET_KEY,
-};
+const redis = require("redis");
 
 const CHANNELS = {
   TEST: "TEST",
@@ -12,26 +7,26 @@ const CHANNELS = {
 
 class PubSub {
   constructor() {
-    this.pubnub = new PubNub(credentials);
-    this.pubnub.subscribe({ channels: Object.values(CHANNELS) });
-    this.pubnub.addListener(this.listener());
+    this.publisher = redis.createClient();
+    this.subscriber = redis.createClient();
+    this.subscriber.subscribe(CHANNELS.TEST);
+    this.subscriber.on("message", (channel, message) => {
+      this.handleMessage(channel, message);
+    });
   }
-  listener() {
-    return {
-      message: (messageObject) => {
-        const { channel, message } = messageObject;
-        console.log(
-          `Message received. \n Channel:${channel} \n Message:${message}`
-        );
-      },
-    };
-  }
-  publish({ channel, message }) {
-    this.pubnub.publish({ channel, message });
+
+  handleMessage(channel, message) {
+    console.log(`--------------------\n
+                Message Received.\n
+                Channel:${channel}\n
+                Message:${message}`);
   }
 }
 
-const testPuubSub = new PubSub();
-testPuubSub.publish({ channel: CHANNELS.TEST, message: "hello pubnub" });
+const testPubSub = new PubSub();
+setTimeout(
+  () => testPubSub.publisher.publish(CHANNELS.TEST, "hello there"),
+  1000
+);
 
 module.exports = PubSub;
