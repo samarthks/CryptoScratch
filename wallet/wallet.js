@@ -3,6 +3,7 @@ const cryptoHash = require("../utils/crypto-hash");
 const { ec } = require("../utils");
 const Transaction = require("./transaction");
 
+
 class Wallet {
   constructor() {
     this.balance = STARTING_BALANCE;
