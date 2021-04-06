@@ -1,4 +1,4 @@
-const { intFromLE } = require("elliptic/lib/elliptic/utils");
+const { REWARD_INPUT, MINING_REWARD } = require("../config");
 const { verifySignature } = require("../utils");
 const Transaction = require("./transaction");
 const Wallet = require("./wallet");
@@ -154,6 +154,22 @@ describe("Transaction", () => {
           );
         });
       });
+    });
+  });
+  
+  describe("rewardTransaction()", () => {
+    let rewardTransaction, minerWallet;
+    beforeEach(() => {
+      minerWallet = new Wallet();
+      rewardTransaction = Transaction.rewardTransaction({ minerWallet });
+    });
+    it("creates a transaction with the reward input", () => {
+      expect(rewardTransaction.input).toEqual(REWARD_INPUT);
+    });
+    it("creates one transaction for the miner with ``Minig Reward", () => {
+      expect(rewardTransaction.outputMap[minerWallet.publicKey]).toEqual(
+        MINING_REWARD
+      );
     });
   });
 });
