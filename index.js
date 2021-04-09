@@ -6,10 +6,12 @@ const PubSub = require("./app/pubsub");
 const TransactionPool = require("./wallet/transaction-pool");
 const Wallet = require("./wallet/wallet");
 const TransactionMiner = require("./app/transaction-miner");
+const path=require("path");
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname,'client/dist')));
 
 const blockchain = new Blockchain();
 const transactionPool = new TransactionPool();
@@ -80,6 +82,10 @@ app.get("/api/wallet-info", (req, res) => {
   });
 });
 
+app.get('*',(req,res)=>{
+res.sendFile(
+  path.join(__dirname,'client/dist/index.html'));
+});//* endpoint means any api other than the one above.
 const syncwithRootState = () => {
   request(
     { url: `${ROOT_NODE_ADDRESS}/api/blocks` },
