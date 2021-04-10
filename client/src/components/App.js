@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Blocks from "./Blocks";
+// import Blocks from "./Blocks";
+import{Link} from "react-router-dom"
 import logo from "../assets/logo.png";
 class App extends Component {
   state = {
@@ -19,12 +20,15 @@ class App extends Component {
         <img className="logo" src={logo}></img>
         <br />
         <div>Welcome to blockchain</div>
+        <div>
+          <Link to="/blocks"> Blocks</Link>
+        </div>
         <div className="WalletInfo">
           <div>Address: {address}</div>
           <div>Balance: {balance}</div>
         </div>
-        <br />
-        <Blocks />
+        {/* <br />
+        <Blocks /> */}
       </div>
     );
   }
