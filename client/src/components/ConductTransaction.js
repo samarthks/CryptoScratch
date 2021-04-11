@@ -13,20 +13,16 @@ class ConductTransaction extends Component {
   };
   conductTransaction = () => {
     const { recipient, amount } = this.state;
-    console.log(this.state);
+
     fetch('http://localhost:3000/api/transact', {
-      method: 'post',
-      // headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ recipient, amount }),
-    }).then(response => {
-        response.json();
-        })
-        .then(json => 
-        //alert(json.message || json.type)
-        console.log(json,'json')
-    );
-    
-  };
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ recipient, amount })
+    }).then(response => response.json())
+      .then(json => {
+        alert(json.message || json.type);
+      });
+  }
   render() {
     //console.log(this.state);
     return (
