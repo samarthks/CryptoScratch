@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import Blocks from "./Blocks";
 import{Link} from "react-router-dom"
 import logo from "../assets/logo.png";
+
 class App extends Component {
   state = {
     walletInfo: {},
@@ -22,6 +23,12 @@ class App extends Component {
         <div>Welcome to blockchain</div>
         <div>
           <Link to="/blocks"> Blocks</Link>
+        </div>
+        <div>
+          <Link to="/conduct-transaction"> Conduct a transaction</Link>
+        </div>
+        <div>
+          <Link to="/transaction-pool"> Transaction Pool</Link>
         </div>
         <div className="WalletInfo">
           <div>Address: {address}</div>
