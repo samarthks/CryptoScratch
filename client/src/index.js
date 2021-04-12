@@ -15,6 +15,6 @@ render( <Router history={history}>
          <Route path="/blocks" component ={Blocks} />
          <Route path="/conduct-transaction" component ={ConductTransaction} />
          <Route path="/transaction-pool" component ={TransactionPool} />
-         <Route path="/dashboard" component ={Dashboard} />gi
+         <Route path="/dashboard" component ={Dashboard} />
     </Switch>
 </Router>, document.getElementById("root"));
