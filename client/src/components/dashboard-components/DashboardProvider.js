@@ -1,6 +1,10 @@
+import "@babel/polyfill";
+
 import React, { Component } from "react";
 
 export const DashboardContext = React.createContext();
+
+const cc = require("cryptocompare");
 
 export default class DashboardProvider extends Component {
   constructor(props) {
@@ -12,6 +16,20 @@ export default class DashboardProvider extends Component {
       confirmFavourites: this.confirmFavourites,
     };
   }
+
+
+  componentDidMount = () => {
+    this.fetchCoins();
+
+  };
+
+  fetchCoins = async () => {
+    let coinList = (await cc.coinList()).Data;
+    this.setState({ coinList });
+    console.log(coinList);
+  };
+
+
 
   confirmFavourites = () => {
     this.setState({

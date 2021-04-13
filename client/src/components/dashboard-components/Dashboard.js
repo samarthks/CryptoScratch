@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import DashboardLayout from "./DashboardLayout";
 import DashboardBar from "./DashboardBar";
 import DashboardProvider from "./DashboardProvider";
 import Settings from "./dashboaard-settings/Settings";
+import Content from "./dashboard-shared/Content";
 class Dashboard extends Component {
   render() {
     return (
@@ -11,13 +11,11 @@ class Dashboard extends Component {
         <DashboardLayout>
           <DashboardProvider>
             <DashboardBar />
-           <Settings />
+            <Content>
+              <Settings />
+            </Content>
           </DashboardProvider>
         </DashboardLayout>
-        {/* <div> Welcome to crytocurrency dashboard</div> */}
-        {/* <div>
-          <Link to="/">Back to Home</Link>      
-        </div> */}
       </div>
     );
   }
