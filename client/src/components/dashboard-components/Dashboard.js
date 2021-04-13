@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import DashboardLayout from "./DashboardLayout";
 import DashboardBar from "./DashboardBar";
 import DashboardProvider from "./DashboardProvider";
+import Settings from "./dashboaard-settings/Settings";
 class Dashboard extends Component {
   render() {
     return (
@@ -10,7 +11,7 @@ class Dashboard extends Component {
         <DashboardLayout>
           <DashboardProvider>
             <DashboardBar />
-            Welcome to CrytoCurrency Dashboard
+           <Settings />
           </DashboardProvider>
         </DashboardLayout>
         {/* <div> Welcome to crytocurrency dashboard</div> */}
