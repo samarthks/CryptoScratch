@@ -15,7 +15,6 @@ import React from "react";
 export default function ({ coin,  }) {
   return (
     <img
-   
       alt={coin.CoinSymbol}
       src={`http://cryptocompare.com/${coin.ImageUrl}`}
     />
